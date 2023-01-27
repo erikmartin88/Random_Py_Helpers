@@ -51,6 +51,8 @@ def makeIDs(streamFC, segIDField, usSegIDField, dsSegIDField, fnodeField, tnodeF
         tb = sys.exc_info()[2]
         print(" Failed on line {}. ".format(tb.tb_lineno) + str(e.message))
         sys.exit()
+def main():
+    pass
 
 if __name__ == '__main__':
     main()
