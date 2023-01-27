@@ -1,0 +1,3 @@
+convert python
+
+K:\Chesapeake_v3\GIS\Automated\Scripts\conda\python.exe K:\Chesapeake_v3\GIS\Automated\Scripts\conda\Tools\scripts\2to3.py C:\Users\emartin\Desktop\circuitscape\circuitscape\Circuitscape_for_ArcGIS\cs_arc.py -w
