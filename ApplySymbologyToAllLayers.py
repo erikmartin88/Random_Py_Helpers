@@ -22,7 +22,7 @@ def main():
 def addSymbology():
     fcs = arcpy.ListFeatureClasses("Prioritized*")
     for fc in fcs:
-        print("Adding symbology field to {}".format(fc))
+        print(("Adding symbology field to {}".format(fc)))
         arcpy.AddField_management(fc, "Symbology3Class", "Text")
         fields = ("Type", "Tier", "Symbology3Class")
         with arcpy.da.UpdateCursor(fc, fields) as rows:
@@ -51,7 +51,7 @@ def applySymbology():
     df = arcpy.mapping.ListDataFrames(mxd, "Layers")[0]
 
     for lyr in arcpy.mapping.ListLayers(mxd, "", df):
-        print("Symbolizing {}".format(lyr.name))
+        print(("Symbolizing {}".format(lyr.name)))
         arcpy.ApplySymbologyFromLayer_management(lyr, lyrFile)
     mxd.save()
 

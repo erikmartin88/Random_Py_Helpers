@@ -6,7 +6,7 @@ arcpy.env.workspace = sourceWorkspace
 
 rasterList = arcpy.ListRasters()
 for raster in rasterList:
-    print("Reprojecting {}".format(raster))
+    print(("Reprojecting {}".format(raster)))
     outRaster = outputWorksapce + raster
     projection = r"K:\Congo_SoundaDam\GIS\WGS 1984 UTM Zone 33S.prj" #"GEOGCS['GCS_WGS_1984',DATUM['D_WGS_1984',SPHEROID['WGS_1984',6378137.0,298.257223563]],PRIMEM['Greenwich',0.0],UNIT['Degree',0.0174532925199433],METADATA['World',-180.0,-90.0,180.0,90.0,0.0,0.0174532925199433,0.0,1262]]"
 

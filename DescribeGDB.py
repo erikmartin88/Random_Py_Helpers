@@ -41,7 +41,7 @@ def main():
         desc = arcpy.Describe(gdb)
 
         # Print GDB path & name
-        print ("Geodatabase: " + desc.catalogPath)
+        print(("Geodatabase: " + desc.catalogPath))
 
         for child in desc.children:
             if child.dataType == "FeatureClass":
@@ -59,7 +59,7 @@ def main():
                     fields.append(field.name)
 
                 #final describe string
-                print("Not in Feature Dataset" + " | " + fc + " | " + spot.text + " | " + str(fields) + "\r\n")
+                print(("Not in Feature Dataset" + " | " + fc + " | " + spot.text + " | " + str(fields) + "\r\n"))
                 stringtowrite = ("Not in Feature Dataset" + " | " + fc + " | " + spot.text + " | " + str(fields) + "\r\n")
                 uStringtowrite = stringtowrite.encode('utf-8')
 
@@ -84,7 +84,7 @@ def main():
                         fields.append(field.name)
 
                     #final describe string
-                    print(fd + " | " + fc + " | " + spot.text + " | " + str(fields) + "\r\n")
+                    print((fd + " | " + fc + " | " + spot.text + " | " + str(fields) + "\r\n"))
                     stringtowrite = (fd + " | " + fc + " | " + spot.text + " | " + str(fields) + "\r\n")
                     uStringtowrite = stringtowrite.encode('utf-8')
 
@@ -110,7 +110,7 @@ def main():
                 cellSize =band.meanCellWidth
 
                 #final describe string
-                print(raster + " | " + str(cellSize) + " | " + integer + " | "+ spot.text + "\r\n")
+                print((raster + " | " + str(cellSize) + " | " + integer + " | "+ spot.text + "\r\n"))
                 stringtowrite = (raster + " | " + str(cellSize) + " | " + integer + " | "+ spot.text + "\r\n")
                 uStringtowrite = stringtowrite.encode('utf-8')
 
@@ -121,8 +121,8 @@ def main():
     except Exception as e:
         tb = sys.exc_info()[2]
         print ("Problem describing data...")
-        print ("Line {}".format(tb.tb_lineno))
-        print (e.message)
+        print(("Line {}".format(tb.tb_lineno)))
+        print((e.message))
         sys.exit()
 
 if __name__ == '__main__':

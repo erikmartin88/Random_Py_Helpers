@@ -8,7 +8,7 @@
 # Copyright:   (c) emartin 2021
 # Licence:     <your licence>
 #-------------------------------------------------------------------------------
-import arcpy, sys, os
+import arcpy, sys, os, datetime
 def main():
     sourceFC = r"K:\OffshoreWindMap\Data\FinalData.gdb\ALL_WHALES_HIGHBIO_WITHPRESENCE_V3"
     updateFC = r"K:\OffshoreWindMap\Data\FinalData.gdb\MONTHLY_WHALES_HIGHBIO_V2"

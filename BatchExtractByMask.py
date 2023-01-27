@@ -10,7 +10,7 @@ failList = []
 try:
     rasterList = arcpy.ListRasters()
     for raster in rasterList:
-        print("Extracting {}".format(raster))
+        print(("Extracting {}".format(raster)))
         outRaster = outputWorksapce + raster
 
         try:
@@ -22,7 +22,7 @@ try:
 
 except Exception as e:
     tb = sys.exc_info()[2]
-    print ("Problem calculating geology metrics on line {}".format(tb.tb_lineno))
-    print (e.message)
+    print(("Problem calculating geology metrics on line {}".format(tb.tb_lineno)))
+    print((e.message))
     sys.exit()
     arcpy.CheckInExtension('Spatial')

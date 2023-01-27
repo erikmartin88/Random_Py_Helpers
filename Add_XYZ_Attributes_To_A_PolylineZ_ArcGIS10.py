@@ -3,7 +3,7 @@ try:
     print ("Add the start node, end node geometry and line slope to the attribute table...")
     print ("A Two-Bit Algorithms, L.O.L. product (gerry@gabrisch.us)")
     print ("Copyright 2013 Gerry Gabrisch")
-    print
+    print()
     import arcpy, math, os, sys, traceback
     print ("go")
     infc = arcpy.GetParameterAsText(0)
@@ -74,5 +74,5 @@ except:
     msgs = "ArcPy ERRORS:\n" + arcpy.GetMessages(2) + "\n"
     arcpy.AddError(pymsg)
     arcpy.AddError(msgs)
-    print (pymsg + "\n")
+    print((pymsg + "\n"))
     print (msgs)

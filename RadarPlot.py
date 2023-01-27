@@ -34,13 +34,13 @@ class Radar(object):
                 ax.xaxis.set_visible(False)
 
             for ax, angle, label in zip(self.axes, self.angles, labels):
-                ax.set_rgrids(range(1, 6), angle=angle, labels=label)
+                ax.set_rgrids(list(range(1, 6)), angle=angle, labels=label)
                 ax.spines["polar"].set_visible(False)
                 ax.set_ylim(0, 5)
         except Exception as e:
             tb = sys.exc_info()[2]
             arcpy.AddError("There was a problem defining the Radar class.  Failed on RP line {}. ".format(tb.tb_lineno) + e.message)
-            print("There was a problem defining the Radar class.  Failed on RP line {}".format(tb.tb_lineno) + e.message)
+            print(("There was a problem defining the Radar class.  Failed on RP line {}".format(tb.tb_lineno) + e.message))
             sys.exit()
 
     def plot(self, values, *args, **kw):

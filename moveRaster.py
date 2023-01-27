@@ -2,7 +2,7 @@ import arcpy
 	
 arcpy.env.workspace = r"K:\RegionalDatasets\Climate\NLDAS\NLDAS.gdb"
 rasterList = arcpy.ListRasters("*max*")
-print rasterList
+print(rasterList)
 for raster in rasterList:
 	arcpy.AddMessage("Moving raster " + raster)
 	arcpy.Copy_management(raster, r"K:\RegionalDatasets\Climate\NLDAS\tmax.gdb\%s" %raster)
@@ -10,7 +10,7 @@ for raster in rasterList:
 	
 arcpy.env.workspace = r"K:\RegionalDatasets\Climate\NLDAS\NLDAS.gdb"
 rasterList = arcpy.ListRasters("*min*")
-print rasterList
+print(rasterList)
 for raster in rasterList:
 	arcpy.AddMessage("Moving raster " + raster)
 	arcpy.Copy_management(raster, r"K:\RegionalDatasets\Climate\NLDAS\tmin.gdb\%s" %raster)

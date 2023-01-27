@@ -12,8 +12,8 @@
 def main():
     import os
     import sys
-    import urllib
-    import urllib2
+    import urllib.request, urllib.parse, urllib.error
+    import urllib.request, urllib.error, urllib.parse
     import itertools
     makeURLList()
 
@@ -31,14 +31,14 @@ def main():
 
         fileList = os.listdir(saveDir)
         if fileName not in fileList:
-            print("Downloading " + fileName + " from " + urlPath)
-            u = urllib2.urlopen(zipFile)
+            print(("Downloading " + fileName + " from " + urlPath))
+            u = urllib.request.urlopen(zipFile)
             f = open('{}\\{}'.format(saveDir, fileName), 'wb+')
 
             meta = u.info()
 
             file_size = int(meta.getheaders("Content-Length")[0])
-            print("Downloading: %s Bytes: %s" % (fileName, file_size))
+            print(("Downloading: %s Bytes: %s" % (fileName, file_size)))
 
             file_size_dl = 0
             block_sz = 8192
@@ -61,8 +61,8 @@ def makeURLList(eastRange, northRange):
     urlRoot ="http://srtm.csi.cgiar.org/SRT-ZIP/SRTM_V41/SRTM_Data_GeoTiff"
     urlList = []
     pairs = []
-    eastRange = range(33, 47)
-    northRange = range(5, 19)
+    eastRange = list(range(33, 47))
+    northRange = list(range(5, 19))
     for east in eastRange:
         for north in northRange:
             pairs.append([east, north])

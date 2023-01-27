@@ -62,10 +62,10 @@ def dictJoin(addField, sourceFC,  sourceJoinField, updateFC, updateJoinField, fi
                     pass
             del valueDict
 
-    except Exception, e:
+    except Exception as e:
         tb = sys.exc_info()[2]
-        print ("Problem dictionary join on line {}".format(tb.tb_lineno))
-        print e.message
+        print(("Problem dictionary join on line {}".format(tb.tb_lineno)))
+        print((e.message))
         sys.exit()
 
 if __name__ == '__main__':

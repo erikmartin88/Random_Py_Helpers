@@ -24,7 +24,7 @@ def walkUp(startIDs, myDict, ids):
     try:
         curIDs = []
         for startID in startIDs:
-            for key, value in myDict.iteritems():
+            for key, value in myDict.items():
                 if value[1] == myDict[startID][0]:
                     ids.append(key)
                     curIDs.append(key)
@@ -33,8 +33,8 @@ def walkUp(startIDs, myDict, ids):
         return ids
     except Exception as e:
         tb = sys.exc_info()[2]
-        print ("Problem getting upstream IDs on networkMetrics line {} at {}".format(tb.tb_lineno, stamp()))
-        print(str(e))
+        print(("Problem getting upstream IDs on networkMetrics line {} at {}".format(tb.tb_lineno, stamp())))
+        print((str(e)))
 
 def walkDown(startIDs, myDict, ids):
     """
@@ -49,7 +49,7 @@ def walkDown(startIDs, myDict, ids):
     try:
         curIDs = []
         for startID in startIDs:
-            for key, value in myDict.iteritems():
+            for key, value in myDict.items():
                 if value[0] == myDict[startID][1]:
                     ids.append(key)
                     curIDs.append(key)
@@ -63,15 +63,15 @@ def walkDown(startIDs, myDict, ids):
             lastDSSeg = ids[-1]
             lastToNode = myDict[lastDSSeg][1]
 
-            for key, value in myDict.iteritems():
+            for key, value in myDict.items():
                 if value[1] == lastToNode and key != lastDSSeg:
                     ids.append(key)
                     walkUp([key], myDict, ids)
         return ids
     except Exception as e:
         tb = sys.exc_info()[2]
-        print ("Problem getting downstream IDs on networkMetrics line {} at {}".format(tb.tb_lineno, stamp()))
-        print(str(e))
+        print(("Problem getting downstream IDs on networkMetrics line {} at {}".format(tb.tb_lineno, stamp())))
+        print((str(e)))
 
 
 def buildNetworkDict(fc, segID, NDOID, NUOID):
@@ -140,8 +140,8 @@ def getUSsegs(startIDs, myDict, usIDs):
 
     except Exception as e:
         tb = sys.exc_info()[2]
-        print ("Problem getting upstream IDs on networkMetrics line {} at {}".format(tb.tb_lineno, stamp()))
-        print(str(e))
+        print(("Problem getting upstream IDs on networkMetrics line {} at {}".format(tb.tb_lineno, stamp())))
+        print((str(e)))
 
 
 def getDSsegs(startID, myDict, dsIDs):
@@ -161,8 +161,8 @@ def getDSsegs(startID, myDict, dsIDs):
         return dsIDs
     except Exception as e:
         tb = sys.exc_info()[2]
-        print ("Problem getting downstream IDs on networkMetrics line {} at {}".format(tb.tb_lineno, stamp()))
-        print(str(e))
+        print(("Problem getting downstream IDs on networkMetrics line {} at {}".format(tb.tb_lineno, stamp())))
+        print((str(e)))
 
 def stamp():
     myNow = str(datetime.datetime.now()).split('.')[0]

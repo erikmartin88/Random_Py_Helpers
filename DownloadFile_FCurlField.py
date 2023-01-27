@@ -8,7 +8,7 @@
 # Copyright:   (c) emartin 2013
 # Licence:     <your licence>
 #-------------------------------------------------------------------------------
-import urllib
+import urllib.request, urllib.parse, urllib.error
 import arcpy
 import os
 
@@ -38,12 +38,12 @@ def main():
             #get list of existing files and don't download if already have it
             fileList = os.listdir(saveDir)
             if fileName not in fileList:
-                print("Downloading " + fileName + " from " + urlPath)
-                urllib.urlretrieve (urlPath, fileName)
+                print(("Downloading " + fileName + " from " + urlPath))
+                urllib.request.urlretrieve (urlPath, fileName)
             if auxName not in fileList:
-                urllib.urlretrieve (auxPath, auxName)
+                urllib.request.urlretrieve (auxPath, auxName)
             if xmlName not in fileList:
-                urllib.urlretrieve (xmlPath, xmlName)
+                urllib.request.urlretrieve (xmlPath, xmlName)
 
     #switch back to original directory
     os.chdir(curDir)
@@ -76,12 +76,12 @@ def main():
             #get list of existing files and don't download if already have it
             fileList = os.listdir(saveDir)
             if fileName not in fileList:
-                print("Downloading " + fileName + " from " + urlPath)
-                urllib.urlretrieve (urlPath, fileName)
+                print(("Downloading " + fileName + " from " + urlPath))
+                urllib.request.urlretrieve (urlPath, fileName)
             if auxName not in fileList:
-                urllib.urlretrieve (auxPath, auxName)
+                urllib.request.urlretrieve (auxPath, auxName)
             if xmlName not in fileList:
-                urllib.urlretrieve (xmlPath, xmlName)
+                urllib.request.urlretrieve (xmlPath, xmlName)
 
     #switch back to original directory
     os.chdir(curDir)

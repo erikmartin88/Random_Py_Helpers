@@ -169,11 +169,11 @@ def accumulate():
                     duration = end-start
                     duration = round(duration, 2)
                     arcpy.AddMessage("Finished ObjectID# {} in {} seconds.".format(rowObjID, duration))
-                    print("Finished ObjectID# {} in {} seconds.".format(rowObjID, duration))
+                    print(("Finished ObjectID# {} in {} seconds.".format(rowObjID, duration)))
 
                 rows.updateRow(row)
 
-    except Exception, e:
+    except Exception as e:
         tb = sys.exc_info()[2]
         arcpy.AddError("Problem accumulating values...")
         arcpy.AddError("Line {}".format(tb.tb_lineno))

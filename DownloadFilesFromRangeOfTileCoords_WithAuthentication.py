@@ -1,17 +1,17 @@
 #!/usr/bin/python
-from cookielib import CookieJar
-from urllib import urlencode
+from http.cookiejar import CookieJar
+from urllib.parse import urlencode
 import os
 import sys
-import urllib
-import urllib2
+import urllib.request, urllib.parse, urllib.error
+import urllib.request, urllib.error, urllib.parse
 import itertools
 import mySecrets
 
 def main():
     saveDir = r"K:\Global\SRTM30\VoidFilled\Africa"
-    africaEastings = range(10, 18)
-    africaNorthings = range(10, 38)
+    africaEastings = list(range(10, 18))
+    africaNorthings = list(range(10, 38))
     africa = makeURLList(africaEastings, africaNorthings)
     downloadURLs(saveDir, africa)
 
@@ -31,13 +31,13 @@ def downloadURLs(saveDir, urls):
     #see https://wiki.earthdata.nasa.gov/display/EL/How+To+Access+Data+With+Python
     username = mySecrets.earthDataUser
     password = mySecrets.earthDataPass
-    password_manager = urllib2.HTTPPasswordMgrWithDefaultRealm()
+    password_manager = urllib.request.HTTPPasswordMgrWithDefaultRealm()
     password_manager.add_password(None, "https://urs.earthdata.nasa.gov", username, password)
     cookie_jar = CookieJar()
-    opener = urllib2.build_opener(
-        urllib2.HTTPBasicAuthHandler(password_manager),
-        urllib2.HTTPCookieProcessor(cookie_jar))
-    urllib2.install_opener(opener)
+    opener = urllib.request.build_opener(
+        urllib.request.HTTPBasicAuthHandler(password_manager),
+        urllib.request.HTTPCookieProcessor(cookie_jar))
+    urllib.request.install_opener(opener)
 
     for zipFile in urls:
         fileName = zipFile.split("/")[-1].strip()
@@ -46,9 +46,9 @@ def downloadURLs(saveDir, urls):
         fileList = os.listdir(saveDir)
         if fileName not in fileList:
             try:
-                print("Downloading " + fileName + " from " + urlPath)
-                u = urllib2.Request(zipFile)
-                response = urllib2.urlopen(u)
+                print(("Downloading " + fileName + " from " + urlPath))
+                u = urllib.request.Request(zipFile)
+                response = urllib.request.urlopen(u)
                 f = open('{}\\{}'.format(saveDir, fileName), 'wb+')
                 file_size_dl = 0
                 block_sz = 8192
@@ -61,9 +61,9 @@ def downloadURLs(saveDir, urls):
                     f.write(buffer)
                 f.close()
             except Exception as e:
-                print("Download {} unavailable".format(zipFile))
+                print(("Download {} unavailable".format(zipFile)))
                 tb = sys.exc_info()[2]
-                print(str(e))
+                print((str(e)))
 
 
     os.chdir(curDir)

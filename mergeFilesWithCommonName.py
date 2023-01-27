@@ -25,10 +25,10 @@ def main():
     for root in roots:
         if root not in existingTables:
             tables = glob.glob("{}\\{}_Region*.csv".format(workspace, root))
-            print("merging {}".format(tables))
+            print(("merging {}".format(tables)))
             arcpy.Merge_management(tables, root)
         else:
-            print("{} already in GDB".format(root))
+            print(("{} already in GDB".format(root)))
 
 if __name__ == '__main__':
     main()

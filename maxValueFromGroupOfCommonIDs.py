@@ -43,7 +43,7 @@ def main():
         exp = "{} = '{}'".format(groupIDField, group) # if text groupID , need to wrap value in single quotes. where_clause = "{} = '{}'"
         with arcpy.da.SearchCursor(fc, fields, where_clause=exp) as rows:
             for row in rows:
-                print(row[1])
+                print((row[1]))
                 heights.append(row[1])
         print(heights)
         maxHeight = max(heights)

@@ -37,8 +37,8 @@ def convertAngles(fc):
 
     except Exception as e:
         tb = sys.exc_info()[2]
-        print ("There was a problem converting angles on line {} ".format(tb.tb_lineno))
-        print(str(e))
+        print(("There was a problem converting angles on line {} ".format(tb.tb_lineno)))
+        print((str(e)))
 
 if __name__ == '__main__':
     main()

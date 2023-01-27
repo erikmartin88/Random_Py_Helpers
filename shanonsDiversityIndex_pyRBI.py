@@ -16,7 +16,7 @@ def generateTargetIds(TargetArrs):
 
 #def createOutputs(PAs,OuputLocation,sumarr,detailarr):
 def createOutputs(sumarr,detailarr):
-    print env.scratchGDB
+    print(env.scratchGDB)
     arcpy.da.NumPyArrayToTable(sumarr, env.scratchGDB + r"/pout_table2")
     
     
@@ -36,7 +36,7 @@ isRare = numpy.vectorize(findRare)
 #### SET INPUTS
 def main():
     if (arcpy.env.scratchGDB == ""):
-        print "Please set the scratch workspace"
+        print("Please set the scratch workspace")
         return
     
     Targets = [r"C:\pyPAT\TestData\target_polygon_habitats.shp",r"C:\pyPAT\TestData\target_line_habitats.shp",r"C:\pyPAT\TestData\target_point_species.shp"]
@@ -52,7 +52,7 @@ def main():
     #PlanningUnitID = "Unit_Id"
     #GlobalArea = r"C:\pyPAT\TestData\utm18\IAV_PUs_dissolve.shp"
 
-    TargetRecords = zip(Targets, TargetsIds)
+    TargetRecords = list(zip(Targets, TargetsIds))
 
     TargetArrs = []
     nrecs = 0
@@ -69,7 +69,7 @@ def main():
     noarcmapstart = datetime.datetime.now()
     totalArea = PUTable['Area'].sum()
 
-    arr = numpy.zeros((nrecs,), dtype=[('TID',long),('PUID',TargetArrs[0]['PUID'].dtype),('Amount',float),('RBI',float),('HpArea',float),('HpPU_All',float),('HpPU_WTargets',float),('Rarity_All','b1'),('Rarity_W_Targets','b1')])
+    arr = numpy.zeros((nrecs,), dtype=[('TID',int),('PUID',TargetArrs[0]['PUID'].dtype),('Amount',float),('RBI',float),('HpArea',float),('HpPU_All',float),('HpPU_WTargets',float),('Rarity_All','b1'),('Rarity_W_Targets','b1')])
 
     targetSummary = generateTargetIds(TargetArrs)
     
@@ -88,7 +88,7 @@ def main():
 
     del TargetArrs
 
-    PUIDic = dict(zip(PUTable["PUID"],PUTable["Area"]))
+    PUIDic = dict(list(zip(PUTable["PUID"],PUTable["Area"])))
     vals = numpy.unique(arr["TID"])
     tt = numpy.size(vals)
     for val in vals:
@@ -105,7 +105,7 @@ def main():
     arr['Rarity_W_Targets'] = isRare(arr['HpPU_WTargets'])
     
     vals = numpy.unique(arr["PUID"])
-    sumarr = numpy.zeros((numpy.size(vals),), dtype=[('PUID',arr['PUID'].dtype),('tRBI',float),('nt1RBI',float),('nt2RBI',float),('tHpArea',float),('tHpPU_All',float),('tHpPU_WTargets',float),('nt1HpArea',float),('nt1HpPU_All',float),('nt1HpPU_WTargets',float),('nt2HpArea',float),('nt2HpPU_All',float),('nt2HpPU_WTargets',float),('Rarity_All',long),('Rarity_W_Targets',long)])
+    sumarr = numpy.zeros((numpy.size(vals),), dtype=[('PUID',arr['PUID'].dtype),('tRBI',float),('nt1RBI',float),('nt2RBI',float),('tHpArea',float),('tHpPU_All',float),('tHpPU_WTargets',float),('nt1HpArea',float),('nt1HpPU_All',float),('nt1HpPU_WTargets',float),('nt2HpArea',float),('nt2HpPU_All',float),('nt2HpPU_WTargets',float),('Rarity_All',int),('Rarity_W_Targets',int)])
 
     sumarr["PUID"] = vals
 
@@ -137,7 +137,7 @@ def main():
 
     td = noarcmapend - noarcmapstart
 
-    print "Non-ArcMap Processing Time: ", td
+    print("Non-ArcMap Processing Time: ", td)
 
     createOutputs(sumarr, arr)
                     

@@ -33,7 +33,7 @@ def sdi(data):
 
     N = sum(data.values())
 
-    return -sum(p(n, N) for n in data.values() if n is not 0)
+    return -sum(p(n, N) for n in list(data.values()) if n is not 0)
 
 if __name__ == '__main__':
     import doctest
@@ -45,7 +45,7 @@ def main():
         "1b" : 20,
         "2" : 15,
         "3a" : 14   }
-    print("Shannon's = {}".format(sdi(vals)))
+    print(("Shannon's = {}".format(sdi(vals))))
 
 if __name__ == '__main__':
     main()

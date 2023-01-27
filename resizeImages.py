@@ -29,7 +29,7 @@ def resize(image):
     nameWext =  image.split("\\")[-1].strip()
     name = nameWext.split(".")[0]
     ext =nameWext.split(".")[-1]
-    print("Resizing {}".format(name))
+    print(("Resizing {}".format(name)))
     basewidth = 200
     img = Image.open(image)
     wpercent = (basewidth / float(img.size[0]))

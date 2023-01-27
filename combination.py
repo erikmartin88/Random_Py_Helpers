@@ -106,7 +106,7 @@ def main():
     validCombos = []
     for x in comb_with_excludes(thisScenario, 2, excludes):
         validCombos.append(x)
-    print(len(validCombos))
+    print((len(validCombos)))
     print (validCombos)
 ##    result =check_exclusions(thisScenario)
 ##    print result

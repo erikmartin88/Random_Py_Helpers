@@ -7,15 +7,15 @@ yearList = ['1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '199
 
 for year in yearList:
 	gdbName = "tavg_shift_rc_10000_" + year + ".gdb"
-	print gdbName
+	print(gdbName)
 	arcpy.CreateFileGDB_management("H:\\TNC", gdbName)
 	outGDBName = "H:\\TNC\\" + gdbName + "\\"
-	print "Out GDB " + outGDBName + " made"
+	print("Out GDB " + outGDBName + " made")
 	arcpy.env.workspace = r"K:\RegionalDatasets\Climate\NLDAS\tavg_shift_rc_10000.gdb"
 	thousandRCRasterList = arcpy.ListRasters("*%s*" %year) 
 	
 	for thousandRCRaster in thousandRCRasterList:
 		inName = "K:\\RegionalDatasets\\Climate\\NLDAS\\tavg_shift_rc_10000.gdb\\" + thousandRCRaster
 		saveName = outGDBName + thousandRCRaster
-		print "Loading " + thousandRCRaster
+		print("Loading " + thousandRCRaster)
 		arcpy.CopyRaster_management(inName, saveName, "", "", "", "", "", "32_BIT_SIGNED")

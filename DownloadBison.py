@@ -14,8 +14,8 @@ def main():
     import arcpy
     import os
     import sys
-    import urllib
-    import urllib2
+    import urllib.request, urllib.parse, urllib.error
+    import urllib.request, urllib.error, urllib.parse
     import json
     import re
 
@@ -40,10 +40,10 @@ def main():
     with open("BISONDownload_Fails.txt", "a") as text_file:
         text_file.write("These species failed to download from BISON:")
     for spp in sppList:
-        print("Running {}...".format(spp))
+        print(("Running {}...".format(spp)))
         url ="http://bisonapi.usgs.ornl.gov/solr/occurrences/select/?q=scientificName:%22" + spp + "%22&rows=2000000&wt=json&json.wrf=BISONObject"
-        req= urllib2.Request(url)
-        opener = urllib2.build_opener()
+        req= urllib.request.Request(url)
+        opener = urllib.request.build_opener()
         f = opener.open(req)
         spText =  f.read()
         finalSpp = spText
@@ -62,7 +62,7 @@ def main():
 
 
             numRecs = finalDict[spp]["numFound"]
-            print("Writing {}.  {} records.".format(spp, numRecs))
+            print(("Writing {}.  {} records.".format(spp, numRecs)))
             counter = 0
             while counter < numRecs:
                 try:
@@ -97,7 +97,7 @@ def main():
                     data = data + "\n"+ name  + "," + str(occurrenceID) + "," + str(latDD) + "," + str(longDD) + "," + str(year) + "," + str(collector) + "," + str(resource)
                 except Exception as e:
                         tb = sys.exc_info()[2]
-                        print("Error on {} on record {}.  Failed on line {}. ".format(spp, counter, tb.tb_lineno) + e.message)
+                        print(("Error on {} on record {}.  Failed on line {}. ".format(spp, counter, tb.tb_lineno) + e.message))
                 counter +=1
                 finalData = data
 
@@ -105,7 +105,7 @@ def main():
                 text_file.write(finalData)
 
         except:
-            print ("{} failed".format(spp))
+            print(("{} failed".format(spp)))
             with open("BISONDownload_Fails.txt", "a") as text_file:
                 text_file.write("\n{}.".format(spp))
             failedList.append(spp)

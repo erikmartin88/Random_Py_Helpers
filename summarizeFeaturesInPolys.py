@@ -29,7 +29,7 @@ def polysInReservoirs(reservoirs, resID,  polyList, nameAbbrv):
         nameAbbrv: String. a short name that will be used for fields and intermediate feature classes.  e.g. "agriLand"
 
         """
-        print("...starting poly area in reservoir metric for {}...".format(nameAbbrv))
+        print(("...starting poly area in reservoir metric for {}...".format(nameAbbrv)))
 
         #delete old fields before intersecting, or they persist
         delFields = ("{}Area".format(nameAbbrv),)
@@ -77,7 +77,7 @@ def polysInReservoirs(reservoirs, resID,  polyList, nameAbbrv):
                 rows.updateRow(row)
 
 
-    except Exception, e:
+    except Exception as e:
         tb = sys.exc_info()[2]
         msg = "Problem running poly area in reservoir metric for {} on line {} of Metrics. {}".format(nameAbbrv, tb.tb_lineno, e)
         print(msg)
@@ -93,7 +93,7 @@ def linearLengthInreservoir(reservoirs, resID,  linearFeatList, nameAbbrv):
         numTiers: the number of 5% Tiers that will be assigned points.  e.g. 5 tiers if the top 25% will get points
         numPoints: the number of points taht will be assigend to those tiers
         """
-        print("...starting linear feature length in reservoir metric for {}...".format(nameAbbrv))
+        print(("...starting linear feature length in reservoir metric for {}...".format(nameAbbrv)))
 
         #delete old fields before intersecting, or they persist
         delFields = ("{}Length".format(nameAbbrv),)
@@ -138,7 +138,7 @@ def linearLengthInreservoir(reservoirs, resID,  linearFeatList, nameAbbrv):
                 rows.updateRow(row)
 
 
-    except Exception, e:
+    except Exception as e:
         tb = sys.exc_info()[2]
         msg = "Problem running linear feature metrics for {} on line {} of Metrics. {}".format(nameAbbrv, tb.tb_lineno, e)
         print(msg)

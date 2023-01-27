@@ -33,7 +33,7 @@ checkList = ['B001', 'P701', 'L200', 'L091', 'S003', 'P546', 'P590', 'P647', 'P1
 def main():
     for k in myLists:
         overlap = intersection(myLists[k], checkList)
-        print("{}: {}".format(k, overlap))
+        print(("{}: {}".format(k, overlap)))
 
 
 def intersection(lst1, lst2):

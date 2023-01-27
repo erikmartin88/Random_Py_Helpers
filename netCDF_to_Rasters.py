@@ -14,8 +14,8 @@ baseNameMin = "K:\\RegionalDatasets\\Climate\\NLDAS\\nldas_met_update.obs.daily.
 for year in yearList:
 	fileNameMax = baseNameMax.replace("YEAR", str(year))
 	fileNameMin = baseNameMin.replace("YEAR", str(year))
-	print fileNameMax
-	print fileNameMin
+	print(fileNameMax)
+	print(fileNameMin)
 	
 	#Get all of the days in each of the years
 	a = '1/1/%s' %year
@@ -28,7 +28,7 @@ for year in yearList:
 		arcpy.MakeNetCDFRasterLayer_md(fileNameMax, "tasmax", "longitude", "latitude", "tasmax_Layer", "#", "time #" ,"BY_VALUE")
 		arcpy.SelectByDimension_md("tasmax_Layer","time %s" %day,"BY_VALUE") 
 		outfileMax = outpath + "tasmax_" + dayName
-		print "Saving file " + outfileMax
+		print("Saving file " + outfileMax)
 		arcpy.AddMessage("Saving file " + outfileMax)
 		arcpy.CopyRaster_management("tasmax_Layer",outfileMax ,"#","#","-999","NONE","NONE","#","NONE","NONE")
 		
@@ -36,6 +36,6 @@ for year in yearList:
 		arcpy.MakeNetCDFRasterLayer_md(fileNameMin, "tasmin", "longitude", "latitude", "tasmin_Layer", "#", "time #" ,"BY_VALUE")
 		arcpy.SelectByDimension_md("tasmin_Layer","time %s" %day,"BY_VALUE") 
 		outfileMin = outpath + "tasmin_" + dayName
-		print "Saving file " + outfileMin
+		print("Saving file " + outfileMin)
 		arcpy.AddMessage("Saving file " + outfileMin)
 		arcpy.CopyRaster_management("tasmin_Layer",outfileMin ,"#","#","-999","NONE","NONE","#","NONE","NONE")

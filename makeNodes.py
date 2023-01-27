@@ -7,7 +7,7 @@
 # Author:      emartin@tnc.org
 #-------------------------------------------------------------------------------
 
-import arcpy, sys, os, pandas as pd
+import arcpy, sys, os, pandas as pd, time
 from collections import defaultdict
 
 def newNodes(input_lines,fNodeField, tNodeField):
@@ -41,7 +41,7 @@ def newNodes(input_lines,fNodeField, tNodeField):
                 rows.updateRow(row)
         end = time.time()
         duration = end-start
-        print("...finished making new nodes in {} seconds".format(duration))
+        print(("...finished making new nodes in {} seconds".format(duration)))
     except Exception as e:
         tb = sys.exc_info()[2]
         msg ="Problem calcing nodes on prepStreams line {}. {}".format(tb.tb_lineno, e)
@@ -57,7 +57,7 @@ def upDownIDs(streams, strUIDField, fNodeField, tNodeField):
         makeIDs(streams, strUIDField, "NUOID", "NDOID", fNodeField, tNodeField)
         end = time.time()
         duration = end-start
-        print("...finished getting stream us & ds IDs in {} seconds".format(duration))
+        print(("...finished getting stream us & ds IDs in {} seconds".format(duration)))
     except Exception as e:
         tb = sys.exc_info()[2]
         msg ="Problem calcing up and down IDs on line {}. {}".format(tb.tb_lineno, e)
@@ -94,5 +94,5 @@ def makeIDs(streamFC, segIDField, usSegIDField, dsSegIDField, fnodeField, tnodeF
 
     except Exception as e:
         tb = sys.exc_info()[2]
-        print(" Failed on line {}. ".format(tb.tb_lineno) + str(e.message))
+        print((" Failed on line {}. ".format(tb.tb_lineno) + str(e.message)))
         sys.exit()

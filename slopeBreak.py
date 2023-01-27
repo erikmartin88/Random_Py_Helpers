@@ -14,7 +14,7 @@ import time
 arcpy.env.overwriteOutput = True
 
 def main():
-    slopeBreaks("LINK", "C:\Users\emartin\Google Drive\Congo\GISSync\AnalysisData.gdb\strline",  "FNODE_", "TNODE_", "GRAD_ABS")
+    slopeBreaks("LINK", "C:\\Users\emartin\Google Drive\Congo\GISSync\AnalysisData.gdb\strline",  "FNODE_", "TNODE_", "GRAD_ABS")
 
 def slopeBreaks(uniqueID, streams, FNodeField, TNodeField, percSlopeField):
     try:
@@ -29,7 +29,7 @@ def slopeBreaks(uniqueID, streams, FNodeField, TNodeField, percSlopeField):
         fields = (uniqueID, FNodeField, TNodeField, percSlopeField, numSlopeBreaksField, dsSlopeField)
         with arcpy.da.UpdateCursor(streams, fields) as uRows:
             for uRow in uRows:
-                print("Running slope breaks on ComID {}".format(uRow[0]))
+                print(("Running slope breaks on ComID {}".format(uRow[0])))
                 numSlopeBreaks = 0
                 with arcpy.da.SearchCursor(streams, fields) as rows:
                     for row in rows:
@@ -42,13 +42,13 @@ def slopeBreaks(uniqueID, streams, FNodeField, TNodeField, percSlopeField):
 
         slopeEnd = time.time()
         slopeDuration = slopeEnd - slopeStart
-        print("Finsihed calculating slope breaks in {} seconds".format(slopeDuration))
+        print(("Finsihed calculating slope breaks in {} seconds".format(slopeDuration)))
 
 
-    except Exception, e:
+    except Exception as e:
         tb = sys.exc_info()[2]
-        print ("Problem calculating number slope breaks. Failed on line {}".format(tb.tb_lineno))
-        print e.message
+        print(("Problem calculating number slope breaks. Failed on line {}".format(tb.tb_lineno)))
+        print(e.message)
         sys.exit()
 
 if __name__ == '__main__':

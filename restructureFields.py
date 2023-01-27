@@ -2,7 +2,7 @@ import time, arcpy
 fc = "K:/SECOORA_WindTool/DataLayers/leases.gdb/temp"
 fs = arcpy.ListFields(fc)
 for f in fs:
-    print(f.name)
+    print((f.name))
     if f.type== "Integer":
         vals = {}
         fields = ("GRID_ID", f.name)

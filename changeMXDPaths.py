@@ -28,7 +28,7 @@ def main():
 ##        print mxds
 
         for mxd in mxds:
-            print("Running {}".format(mxd))
+            print(("Running {}".format(mxd)))
             try:
                 myMXD =arcpy.mapping.MapDocument(mxd)
                 elements = []
@@ -42,24 +42,24 @@ def main():
                         baseSpace =elem.workspacePath[1:]
                         if baseSpace in subdirs:
                             newSpace = elem.workspacePath.replace("K:", "L:")
-                            print (elem.workspacePath + "==" + elem.name + " is now " + newSpace + "---" + elem.name)
+                            print((elem.workspacePath + "==" + elem.name + " is now " + newSpace + "---" + elem.name))
                             try:
                                 elem.findAndReplaceWorkspacePath(elem.workspacePath, newSpace)
                             except Exception as e:
-                                print(str(e))
+                                print((str(e)))
                     except:
-                        print("Couldn't get path for layer {}".format(elem.name))
+                        print(("Couldn't get path for layer {}".format(elem.name)))
 
 
                 myMXD.save()
             except:
-                print("Problem opening {}.  Not updated.".format(mxd))
+                print(("Problem opening {}.  Not updated.".format(mxd)))
 
 
     except Exception as e:
         tb = sys.exc_info()[2]
-        print ("Problem changing file paths on line {} at {}".format(tb.tb_lineno, stamp()))
-        print(str(e))
+        print(("Problem changing file paths on line {} at {}".format(tb.tb_lineno, stamp())))
+        print((str(e)))
 
 def stamp():
     myNow = str(datetime.datetime.now()).split('.')[0]

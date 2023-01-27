@@ -57,11 +57,11 @@ def main():
             arcpy.mapping.ExportToPDF(mxd, r"{}\{}.pdf".format(saveDir, fieldName))
             speciesLayer.name = "Species"
 
-    except Exception, e:
+    except Exception as e:
         tb = sys.exc_info()[2]
         print ("Problem with the mapping module...")
-        print "Line {}".format(tb.tb_lineno)
-        print e.message
+        print(("Line {}".format(tb.tb_lineno)))
+        print((e.message))
         sys.exit()
 if __name__ == '__main__':
     main()

@@ -25,7 +25,7 @@ def main():
         result = arcpy.SimplifyPolygon_cartography(inputPolys,output,algorithm,tolerance,minArea,topoErrors, keepPoints)
         arcpy.SetParameterAsText(8, result)
 
-    except Exception, e:
+    except Exception as e:
         tb = sys.exc_info()[2]
         arcpy.AddMessage("Problem simplifying polygon...")
         arcpy.AddMessage ("Line {}".format(tb.tb_lineno))

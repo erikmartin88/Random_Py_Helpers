@@ -1,6 +1,6 @@
 
 import os, sys
-import urllib
+import urllib.request, urllib.parse, urllib.error
 
 def main():
     lossyear = "K:/Global/Hansen/lossyear.txt"
@@ -23,9 +23,9 @@ def download(linestrings):
 ##        path = "K:/Global/Hansen/" + url_foldername
 ##        os.makedirs(path)
         path = "K:/Global/Hansen/" + url_foldername
-        print "downloading url {}".format(url)
+        print(("downloading url {}".format(url)))
         fileName = path + url_foldername + ".tif"
-        urllib.urlretrieve(url, fileName)
+        urllib.request.urlretrieve(url, fileName)
 
 
 if __name__ == '__main__':

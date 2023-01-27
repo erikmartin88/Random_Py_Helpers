@@ -37,10 +37,10 @@ def GetAccount(pref, tokenfun):
 import requests, json, time
 
 #Enter Username and Password
-user= raw_input('What is the ArcGIS Online Username?')
-pw = raw_input('What is the ArcGIS Online Password?')
-inItemID= raw_input('What is the Item ID of the uploaded FGDB?')
-layerName =raw_input('What is the Service Name of the service to overwrite ?')
+user= input('What is the ArcGIS Online Username?')
+pw = input('What is the ArcGIS Online Password?')
+inItemID= input('What is the Item ID of the uploaded FGDB?')
+layerName =input('What is the Service Name of the service to overwrite ?')
 
 
 
@@ -77,7 +77,7 @@ requestor=request.json()
 for item in requestor['services']:
     outID=item['serviceItemId']
     jobId=item['jobId']
-print request.json()
+print(request.json())
 
 #check status until status is complete
 statusURL ='{}.maps.arcgis.com/sharing/rest/content/users/{}/items/{}/status?jobId={}&f=json&token={}'.format(portalUrl,user,outID,jobId,token[0])
@@ -85,12 +85,12 @@ requestStatus = requests.get(statusURL)
 status=requestStatus.json()
 while status['status']=='processing':
     time.sleep(10)
-    print status['status']
+    print(status['status'])
     statusURL ='{}.maps.arcgis.com/sharing/rest/content/users/{}/items/{}/status?jobId={}&f=json&token={}'.format(portalUrl,user,outID,jobId,token[0])
     requestStatus = requests.get(statusURL)
     status=requestStatus.json()
 
 #print completed status
-print status['status']
+print(status['status'])
 
 

@@ -52,7 +52,7 @@ def main():
         resIDs.append(segID) #include the original segemnt in the accumulation
         idend=time.time()
         idur= idstart - idend
-        print("Got id for segemnt {} in {} sec".format(segID, idur))
+        print(("Got id for segemnt {} in {} sec".format(segID, idur)))
 
         #sum the values
         accstart = time.time()
@@ -61,10 +61,10 @@ def main():
         accumDict[segID] = accumVal
         accend = time.time()
         accdur = accstart-accend
-        print("...Accumumalated segemnt {} in {} sec".format(segID, accdur))
+        print(("...Accumumalated segemnt {} in {} sec".format(segID, accdur)))
         segEnd = time.time()
         segDuration = segEnd - segStart
-        print("...Finished segemnt {} in {} sec".format(segID, segDuration))
+        print(("...Finished segemnt {} in {} sec".format(segID, segDuration)))
 
     #write accumulated value back to streams
     fields = (segIDField, accumField)
@@ -75,7 +75,7 @@ def main():
 
     end = time.time()
     duration = end-start
-    print("finished accumulation in {} seconds".format(duration))
+    print(("finished accumulation in {} seconds".format(duration)))
 
 
 def getDSids(startID, myDict, ids):
@@ -86,7 +86,7 @@ def getDSids(startID, myDict, ids):
     myDict: a dictionary of the barrier table where myDict[segID] = (fNode, tNode)
     ids = an empty list that will be populated with all of the downstream IDs
     """
-    for key, value in myDict.iteritems():
+    for key, value in myDict.items():
         if value[0] == myDict[startID][1]:
             ids.append(key)
             return(getDSids(key, myDict, ids))
@@ -101,7 +101,7 @@ def getUSids(startIDs, myDict, ids):
     """
     curIDs = []
     for startID in startIDs:
-        for key, value in myDict.iteritems():
+        for key, value in myDict.items():
             if value[1] == myDict[startID][0]:
                 ids.append(key)
                 curIDs.append(key)

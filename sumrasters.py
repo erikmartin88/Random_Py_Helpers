@@ -16,7 +16,7 @@ rasters = arcpy.ListRasters('','')
 i = 0
 #loop through rasters in list
 for raster in rasters:
-    print "processing raster: %s" %os.path.join(dataPath,raster)
+    print("processing raster: %s" %os.path.join(dataPath,raster))
 
     #convert nodata to zero
     out1 = Con(IsNull(raster), 0, raster)

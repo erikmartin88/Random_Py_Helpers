@@ -70,11 +70,11 @@ def GetMedianValues(source_fc, new_table, case_field, value_field):
     arcpy.AddField_management(new_table,'FREQUENCY','LONG')
     # Insert rows
     with arcpy.da.InsertCursor(new_table, [case_field, value_field2, 'FREQUENCY']) as rows:
-        for k,v in sorted(values.iteritems()):
+        for k,v in sorted(values.items()):
             rows.insertRow((k, v[0], v[1]))
 
     # report results
-    print ('Created %s' %os.path.basename(new_table))
+    print(('Created %s' %os.path.basename(new_table)))
     arcpy.AddMessage('Created %s' %os.path.basename(new_table))
     # .dbf's are automatically given a 'Field1' field...Clean this up
     try:

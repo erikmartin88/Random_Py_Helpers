@@ -18,7 +18,7 @@ def main():
     with arcpy.da.SearchCursor(table, fields) as rows:
         for row in rows:
             if row[1] == 1:
-                print("Running HUC {}".format(row[0]))
+                print(("Running HUC {}".format(row[0])))
                 expression = '"HUC12" = \'{}\''.format(row[0])
                 arcpy.MakeTableView_management(table, "tableView", expression)
                 with arcpy.da.SearchCursor("tableView", fields) as sRows:
@@ -26,17 +26,17 @@ def main():
                     for sRow in sRows:
                         valList.append(sRow[2])
                     maxVal = (max(valList))-1
-                    print maxVal
+                    print(maxVal)
                 arcpy.MakeTableView_management(table, "tableView2", expression)
 
                 with arcpy.da.UpdateCursor ("tableView2", fields) as uRows:
                     for uRow in uRows:
                         if (uRow[2] < maxVal):
-                            print("{} < {}".format(uRow[2], maxVal))
+                            print(("{} < {}".format(uRow[2], maxVal)))
                             uRow[3] = 0
                             uRows.updateRow(uRow)
                         elif (uRow[2] > maxVal):
-                            print("{} > {}".format(row[2], maxVal))
+                            print(("{} > {}".format(row[2], maxVal)))
                             uRow[3] = 1
                             uRows.updateRow(uRow)
                 del valList

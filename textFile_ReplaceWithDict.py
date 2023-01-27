@@ -30,8 +30,8 @@ def iterationReplace():
 
     except Exception as e:
         tb = sys.exc_info()[2]
-        print("There was a problem editing text on line {} ".format(tb.tb_lineno))
-        print(str(e))
+        print(("There was a problem editing text on line {} ".format(tb.tb_lineno)))
+        print((str(e)))
 
 def attributeAliasReplace():
     try:
@@ -60,8 +60,8 @@ def attributeAliasReplace():
 
     except Exception as e:
         tb = sys.exc_info()[2]
-        print("There was a problem editing text on line {} ".format(tb.tb_lineno))
-        print(str(e))
+        print(("There was a problem editing text on line {} ".format(tb.tb_lineno)))
+        print((str(e)))
 
 
 if __name__ == '__main__':

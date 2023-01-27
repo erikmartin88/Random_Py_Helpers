@@ -25,17 +25,17 @@ def main():
         if "Prioritized" in layer:
             print(layer)
             count = arcpy.GetCount_management(layer)
-            print(count[0])
+            print((count[0]))
             if int(count[0]) >0:
                 fields = arcpy.ListFields(layer)
                 for field in fields:
                     if field.name in yesNoFields:
-                        print("...{}".format(field.name))
+                        print(("...{}".format(field.name)))
                         try:
                             arcpy.AssignDomainToField_management(in_table=layer, field_name=field.name, domain_name="YesNo", subtype_code="")
                         except:
                             errors.append("{} / {}".format(layer, field.name))
-    print("Errors: {}".format(errors))
+    print(("Errors: {}".format(errors)))
 
 if __name__ == '__main__':
     main()

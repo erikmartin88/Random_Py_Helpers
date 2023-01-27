@@ -50,7 +50,7 @@ def main():
         with arcpy.da.UpdateCursor(fc_lyr, fields) as rows:
             for row in rows:
                 objID = row[0]
-                print("running OBJECTID # " + str(objID))
+                print(("running OBJECTID # " + str(objID)))
                 if row[2] == 1:
                     print ("already flagged")
                 if row[2] == 0:
@@ -81,7 +81,7 @@ def main():
 
                             if (len(nearNameList) >= 1 and (row[2] == 0) and nearRow[2] == 0):
 
-                                print("    in name = " + origInName + "  near name = " + origNearName)
+                                print(("    in name = " + origInName + "  near name = " + origNearName))
                                 match = set(inName.split()).intersection(set(nearName.split()))
                                 lenMatch = (len(match))
                                 match = str(match)
@@ -90,7 +90,7 @@ def main():
                                 matchPretty = matchPretty.replace("])", "")
 
                                 keyWordMatch = 0
-                                for key, value in keyPairs.iteritems():
+                                for key, value in keyPairs.items():
                                     #identify potential dupes that have both pairs of key words
                                     if ((inName.find(key)!=-1) and (nearName.find(value)!=-1)):
                                         keyWordMatch = 1
@@ -106,7 +106,7 @@ def main():
 
                                 if((lenMatch>0) and (nearPotMatch == 0) and (keyWordMatch == 0)):
 
-                                    print("    match on '{}' Adding flag".format(matchPretty))
+                                    print(("    match on '{}' Adding flag".format(matchPretty)))
                                     row[2] = 1
                                     row[3] = "Dupe with objID {}. inName ='{}'.  nearName='{}'. Match words = '{}'".format(nearObjID, origInName, origNearName, matchPretty)
 
@@ -115,11 +115,11 @@ def main():
                                     row[2] = 0
                                 rows.updateRow(row)
 
-    except Exception, e:
+    except Exception as e:
         tb = sys.exc_info()[2]
         print ("Problem finding matched records...")
-        print "Line {}".format(tb.tb_lineno)
-        print e.message
+        print("Line {}".format(tb.tb_lineno))
+        print(e.message)
         sys.exit()
 if __name__ == '__main__':
     main()

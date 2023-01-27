@@ -100,11 +100,11 @@ class ReplaceNulls:
             print("Finished converting NULL values...")
             arcpy.AddMessage("Finished converting NULL values...")
 
-        except Exception, e:
+        except Exception as e:
             tb = sys.exc_info()[2]
             print ("Problem converting nulls...")
-            print "Line {}".format(tb.tb_lineno)
-            print e.message
+            print("Line {}".format(tb.tb_lineno))
+            print(e.message)
 
 def main():
     layer = ReplaceNulls(arcpy.GetParameterAsText(0))

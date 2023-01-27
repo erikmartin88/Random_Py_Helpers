@@ -21,7 +21,7 @@ def main():
 
     dsIDs = []
     getDSids("xy3664830182553503", myDict, dsIDs)
-    print("dsIDs= {}".format(dsIDs))
+    print(("dsIDs= {}".format(dsIDs)))
 
 
 def getDSids(startID, myDict, ids):
@@ -32,7 +32,7 @@ def getDSids(startID, myDict, ids):
     myDict: a dictionary of the barrier table where myDict["UNIQUE_ID"] = (batUSNetID, batDSNetID)
     ids = an empty list that will be populated with all of the downstream IDs
     """
-    for key, value in myDict.iteritems():
+    for key, value in myDict.items():
         if value[0] == myDict[startID][1]:
             ids.append(key)
             return(getDSids(key, myDict, ids))

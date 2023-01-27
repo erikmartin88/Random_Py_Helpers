@@ -10,15 +10,15 @@
 #-------------------------------------------------------------------------------
 import os
 import sys
-import urllib
-import urllib2
+import urllib.request, urllib.parse, urllib.error
+import urllib.request, urllib.error, urllib.parse
 import itertools
 import base64
 import requests
 def main():
     saveDir = r"K:\Global\SRTM30\VoidFilled\Africa"
-    africaEastings = range(0, 47)
-    africaNorthings = range(10, 80)
+    africaEastings = list(range(0, 47))
+    africaNorthings = list(range(10, 80))
     africa = makeURLList(africaEastings, africaNorthings)
     downloadURLs(saveDir, africa)
 
@@ -43,19 +43,19 @@ def downloadURLs(saveDir, urls):
         fileList = os.listdir(saveDir)
         if fileName not in fileList:
             try:
-                print("Downloading " + fileName + " from " + urlPath)
+                print(("Downloading " + fileName + " from " + urlPath))
 
-                request = urllib2.Request(zipFile)
+                request = urllib.request.Request(zipFile)
                 base64string = base64.b64encode('%s:%s' % ("erikmartin88", "ZU0tXWsbREZ1VNyoAYW9"))
                 request.add_header("Authorization", "Basic %s" % base64string)
 
-                u = urllib2.urlopen(request)
+                u = urllib.request.urlopen(request)
                 f = open('{}\\{}'.format(saveDir, fileName), 'wb+')
 
                 meta = u.info()
 
                 file_size = int(meta.getheaders("Content-Length")[0])
-                print "Downloading: %s Bytes: %s" % (fileName, file_size)
+                print(("Downloading: %s Bytes: %s" % (fileName, file_size)))
 
                 file_size_dl = 0
                 block_sz = 8192
@@ -71,7 +71,7 @@ def downloadURLs(saveDir, urls):
 ##                    print status,
                 f.close()
             except:
-                print("Download {} unavailable".format(zipFile))
+                print(("Download {} unavailable".format(zipFile)))
     os.chdir(curDir)
 
 
